@@ -38,7 +38,7 @@ public class UserController {
 			return "forms/addUser";
 		}
 		userRepo.addUser(user);
-		System.out.println(user.getId() + " " + user.getFirstName() + " " + user.getLastName());
+		System.out.println(user.getId() + " " + user.getUsername() + " " + user.getEmail());
 		return "forms/success";
 	}
 

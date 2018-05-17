@@ -10,6 +10,6 @@ public class HomePageController {
 	@GetMapping("/home")
  	public String homePage() {
  		System.out.println("Aplikacja online");	
- 		return "forms/success";
+ 		return "forms/mainPage";
  	}
 }

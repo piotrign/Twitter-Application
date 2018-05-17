@@ -7,41 +7,31 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-@Table(name = "tweeter_tweet")
-public class Tweet {
-
+public class Comment {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-
-	@NotEmpty
-	@Size(min = 5, max = 50)
-	private String title;
-
-	@NotEmpty
-	@Size(max = 140)
-	private String textBox;
-
-	@CreationTimestamp
-	private Date created;
-
+	
 	@ManyToOne
 	private User user;
 	
 	@ManyToOne
-	private Comment comment;
+	private Tweet tweet;
 	
-	public Tweet() {
+	@CreationTimestamp
+	private Date created;
+	
+	private String text;
 
+	public Comment() {
+		
 	}
-
+	
 	public long getId() {
 		return id;
 	}
@@ -50,20 +40,20 @@ public class Tweet {
 		this.id = id;
 	}
 
-	public String getTitle() {
-		return title;
+	public User getUser() {
+		return user;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
-	public String getTextBox() {
-		return textBox;
+	public Tweet getTweet() {
+		return tweet;
 	}
 
-	public void setTextBox(String textBox) {
-		this.textBox = textBox;
+	public void setTweet(Tweet tweet) {
+		this.tweet = tweet;
 	}
 
 	public Date getCreated() {
@@ -73,4 +63,13 @@ public class Tweet {
 	public void setCreated(Date created) {
 		this.created = created;
 	}
+
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
+	}
+	
 }
