@@ -1,6 +1,7 @@
 package cl.twitter.controller;
 
 
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +21,10 @@ import cl.twitter.entity.Tweet;
 public class TweetController {
 
 	@Autowired
-	TweetDao tweetRepo;
+	TweetDao tweetDao;
 	
 	@Autowired
-	UserDao userRepo;
+	UserDao userDao;
 	
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String getTweet(Model model) {
@@ -36,7 +37,7 @@ public class TweetController {
 		if(result.hasErrors()) {
 			return "forms/addTweet";
 		}
-		tweetRepo.addTweet(tweet);
+		tweetDao.addTweet(tweet);
 		System.out.println(tweet.getId() + " " + tweet.getTitle() + " " + tweet.getTextBox());
 		return "/forms/addTweet";
 	}

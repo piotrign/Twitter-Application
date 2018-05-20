@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-Akcja zakonczyla sie sukcesem.
+Success
+<a href="${contextPath}/home"><button>Return to home page</button></a>
+<a href="${contextPath}/user/add"><button>Add new user</button></a>
 </body>
 </html>

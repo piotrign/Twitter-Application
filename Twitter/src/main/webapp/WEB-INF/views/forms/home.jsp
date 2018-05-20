@@ -10,17 +10,15 @@
 </head>
 <body>
 	<h1>Main Page</h1>
-	<a href="http://localhost:8080/cl.twitter/forms/login"><button>Login
-			page</button></a>
-	<br>
-	<br>
-	<a href="http://localhost:8080/cl.twitter/forms/tweet/add"><button>Send
-			new tweet!</button></a>
+	<a href="${contextPath}/login"><button>Login</button></a>
+	<a href="${contextPath}/tweet/add"><button>Send tweet</button></a>
+	<a href="${contextPath}/user/add"><button>Add user</button></a>
+	<a href="${contextPath}/user/all"><button>Show all users</button></a>
 	<br>
 	<br>
 	<h2>List of tweets</h2>
 	<br>
-	<table border="1">
+	<table border="2">
 		<thead>
 			<tr>
 				<td>Title</td>
@@ -31,7 +29,7 @@
 		<c:forEach items="${tweets}" var="tweet">
 			<tr>
 				<td><c:out value="${tweet.title}" /></td>
-				<td><c:out value="${tweet.tweetText}" /></td>
+				<td><c:out value="${tweet.textBox}" /></td>
 				<td><c:out value="${tweet.created}" /></td>
 			</tr>
 		</c:forEach>

@@ -29,13 +29,13 @@ public class UserController {
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String getUser(Model model) {
 		model.addAttribute(new User());
-		return "forms/addUser";
+		return "forms/registerUser";
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String processUserForm(@Valid User user, BindingResult result) {
 		if (result.hasErrors()) {
-			return "forms/addUser";
+			return "forms/registerUser";
 		}
 		userRepo.addUser(user);
 		System.out.println(user.getId() + " " + user.getUsername() + " " + user.getEmail());

@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 
 import cl.twitter.entity.User;
 
-
 @Component
 @Transactional
 public class UserDao {
@@ -39,11 +38,12 @@ public class UserDao {
 	}
 
 	public List<User> getAllUsers() {
-		
+
 		Query query = entityManager.createQuery("SELECT u FROM User u");
 		@SuppressWarnings("unchecked")
 		List<User> allUsers = query.getResultList();
+		System.out.println(allUsers.toString());
 		return allUsers;
 	}
-	
+
 }

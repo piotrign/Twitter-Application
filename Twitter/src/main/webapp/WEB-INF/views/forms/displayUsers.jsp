@@ -15,16 +15,16 @@
 		<thead>
 			<tr>
 				<td>Id</td>
-				<td>First name</td>
-				<td>Last name</td>
+				<td>Username</td>
 				<td>Email</td>
+				<td>Edit User</td>
+				<td>Remove User</td>
 			</tr>
 		</thead>
 		<c:forEach items="${users}" var="user">
 			<tr>
 				<td><c:out value="${user.id}" /></td>
-				<td><c:out value="${user.firstName}" /></td>
-				<td><c:out value="${user.lastName}" /></td>
+				<td><c:out value="${user.username}" /></td>
 				<td><c:out value="${user.email}" /></td>
 				<td><a href="http://localhost:8080/cl.exam6/forms/user/edit/${user.id}">Edit</a>
 					<a href="http://localhost:8080/cl.exam6/forms/user/remove/${user.id}">Delete</a>

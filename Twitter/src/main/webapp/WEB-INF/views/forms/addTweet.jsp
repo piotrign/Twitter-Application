@@ -11,7 +11,10 @@
 <body>
 
 <h1>Welcome. Send your tweet:</h1>
-
+<br>
+<a href="${contextPath}/home"><button>Return to main page</button></a>
+<br>
+<br>
 	<form:form method="POST" modelAttribute="tweet">
 		<h2>Input data:</h2>
 		Title of tweet:<form:input path="title" />
@@ -19,8 +22,5 @@
 		<br>
 		<input type="submit" value="save">
 	</form:form>
-
-	<!--  <a href="${contextPath}/home"><button>Home</button></a>-->
-<a href="http://localhost:8080/cl.twitter/forms/mainPage"><button>Home page</button></a>
 </body>
 </html>
