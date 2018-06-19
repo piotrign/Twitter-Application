@@ -38,7 +38,7 @@ public class UserController {
 			return "forms/registerUser";
 		}
 		userRepo.addUser(user);
-		System.out.println(user.getId() + " " + user.getUsername() + " " + user.getEmail());
+		System.out.println(user.getId() + " " + user.getLastName() + " " + user.getEmail());
 		return "forms/success";
 	}
 
@@ -68,10 +68,11 @@ public class UserController {
 		userRepo.updateUser(user);
 		return "redirect:/user/all";
 	}
+
 	@GetMapping("/remove/{id}")
-	 	public String removeUser(@PathVariable long id) {
+	public String removeUser(@PathVariable long id) {
 		userRepo.deleteById(id);
 		return "redirect:/user/all";
 	}
-	
+
 }
