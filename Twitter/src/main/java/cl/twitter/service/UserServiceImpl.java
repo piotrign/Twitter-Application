@@ -5,12 +5,14 @@ import java.util.HashSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import cl.twitter.entity.Role;
 import cl.twitter.entity.User;
 import cl.twitter.repository.RoleRepository;
 import cl.twitter.repository.UserRepository;
 
+@Service("userService")
 public class UserServiceImpl implements UserService{
 	@Autowired
 	private UserRepository userRepository;
