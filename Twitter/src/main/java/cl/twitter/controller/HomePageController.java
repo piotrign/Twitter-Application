@@ -27,13 +27,13 @@ public class HomePageController {
 	@GetMapping("/user/home")
 	public String homePage(Model model) {
 		model.addAttribute("tweets", tweetDao.getAllTweets());
-		return "forms/home";
+		return "/home";
 	}
 
 	@PostMapping(path="/home")
 	public String getUserTweets(@ModelAttribute String username, @ModelAttribute String password) {
 		
-		return "redirect:/tweeter/home";
+		return "redirect:/home";
 	}
 	
 	@RequestMapping(value="/admin/home", method = RequestMethod.GET)
@@ -41,7 +41,7 @@ public class HomePageController {
 		ModelAndView modelAndView = new ModelAndView();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findUserByEmail(auth.getName());
-		modelAndView.setViewName("admin/home");
+		modelAndView.setViewName("/home");
 		return modelAndView;
 	}
 	

@@ -14,7 +14,7 @@
 	<a href="${contextPath}/home"><button>Main page</button></a>
 	<br> 
 	To register use following link:
-	<a href="${contextPath}/register-user"><button>Register</button></a>
+	<a href="${contextPath}/registration"><button>Register</button></a>
 	<br>
 	<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
@@ -30,6 +30,7 @@
 
 	<form method="POST" action="#">
 		<table border=1>
+		
 			<tr>
 				<th>Email:</th>
 				<td><input type="text" name="email"></td>

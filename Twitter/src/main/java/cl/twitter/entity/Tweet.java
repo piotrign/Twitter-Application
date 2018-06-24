@@ -14,7 +14,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-@Table(name = "tweeter_tweet")
+@Table(name = "tweet")
 public class Tweet {
 
 	@Id
