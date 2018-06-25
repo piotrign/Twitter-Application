@@ -12,19 +12,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import cl.twitter.dao.TweetDao;
-import cl.twitter.dao.UserDao;
 import cl.twitter.entity.User;
+import cl.twitter.repository.TweetRepository;
+import cl.twitter.repository.UserRepository;
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
 
 	@Autowired
-	UserDao userRepo;
+	TweetRepository tweetRepository;
 
 	@Autowired
-	TweetDao tweetRepo;
+	UserRepository userRepository;
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String getUser(Model model) {
@@ -37,26 +37,26 @@ public class UserController {
 		if (result.hasErrors()) {
 			return "forms/registerUser";
 		}
-		userRepo.addUser(user);
+		userRepository.save(user);
 		System.out.println(user.getId() + " " + user.getLastName() + " " + user.getEmail());
 		return "forms/success";
 	}
 
 	@GetMapping("/all")
 	public String findAllUser(Model model) {
-		model.addAttribute("users", userRepo.getAllUsers());
+		model.addAttribute("users", userRepository.findAll());
 		return "forms/displayUsers";
 	}
 
 	@GetMapping("/{id}/tweets")
 	public String findUserTweets(@PathVariable long id, Model model) {
-		model.addAttribute("tweets", tweetRepo.getAllTweetsByUserId(id));
+		model.addAttribute("tweets", tweetRepository.findAllTweetByUserId(id));
 		return "forms/displayTweets";
 	}
 
 	@GetMapping("/edit/{id}")
 	public String editUser(@PathVariable long id, Model model) {
-		model.addAttribute("user", userRepo.findById(id));
+		model.addAttribute("user", userRepository.findById(id));
 		return "/forms/addUser";
 	}
 
@@ -65,13 +65,13 @@ public class UserController {
 		if (result.hasErrors()) {
 			return "/forms/addUser";
 		}
-		userRepo.updateUser(user);
+		userRepository.save(user);
 		return "redirect:/user/all";
 	}
 
 	@GetMapping("/remove/{id}")
 	public String removeUser(@PathVariable long id) {
-		userRepo.deleteById(id);
+		userRepository.delete(id);
 		return "redirect:/user/all";
 	}
 

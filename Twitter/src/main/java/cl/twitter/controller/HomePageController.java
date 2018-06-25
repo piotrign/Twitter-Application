@@ -8,25 +8,23 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import cl.twitter.dao.TweetDao;
 import cl.twitter.entity.User;
+import cl.twitter.repository.TweetRepository;
 import cl.twitter.service.UserService;
 
 @Controller
 public class HomePageController {
 	@Autowired
-	private TweetDao tweetDao;
+	private TweetRepository tweetRepository;
 	
 	@Autowired
 	private UserService userService;
 
-	@GetMapping("/user/home")
+	@GetMapping("/home")
 	public String homePage(Model model) {
-		model.addAttribute("tweets", tweetDao.getAllTweets());
+		model.addAttribute("tweets", tweetRepository.findAllByOrderByCreatedDesc());
 		return "/home";
 	}
 
@@ -36,7 +34,7 @@ public class HomePageController {
 		return "redirect:/home";
 	}
 	
-	@RequestMapping(value="/admin/home", method = RequestMethod.GET)
+	@GetMapping("/admin/home")
 	public ModelAndView home(){
 		ModelAndView modelAndView = new ModelAndView();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();

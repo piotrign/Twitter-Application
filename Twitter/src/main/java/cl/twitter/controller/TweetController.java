@@ -9,19 +9,19 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import cl.twitter.dao.TweetDao;
-import cl.twitter.dao.UserDao;
 import cl.twitter.entity.Tweet;
+import cl.twitter.repository.TweetRepository;
+import cl.twitter.repository.UserRepository;
 
 @Controller
 @RequestMapping("/tweet")
 public class TweetController {
 
 	@Autowired
-	TweetDao tweetDao;
+	TweetRepository tweetRepository;
 
 	@Autowired
-	UserDao userDao;
+	UserRepository userRepository;
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String getTweet(Model model) {
@@ -34,7 +34,7 @@ public class TweetController {
 		if (result.hasErrors()) {
 			return "forms/addTweet";
 		}
-		tweetDao.addTweet(tweet);
+		tweetRepository.save(tweet);
 		System.out.println(tweet.getId() + " " + tweet.getTitle() + " " + tweet.getTextBox());
 		return "/forms/addTweet";
 	}
