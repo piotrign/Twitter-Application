@@ -24,7 +24,7 @@ public class HomePageController {
 
 	@GetMapping("/home")
 	public String homePage(Model model) {
-		model.addAttribute("tweets", tweetRepository.findAllByOrderByCreatedDesc());
+		model.addAttribute("tweets", tweetRepository.findAllOrderByCreatedDesc());
 		return "/home";
 	}
 

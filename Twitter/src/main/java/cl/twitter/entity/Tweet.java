@@ -2,6 +2,7 @@ package cl.twitter.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,6 +20,7 @@ public class Tweet {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "tweet_id")
 	private long id;
 
 	@NotEmpty
@@ -38,10 +40,6 @@ public class Tweet {
 	@ManyToOne
 	private Comment comment;
 	
-	public Tweet() {
-
-	}
-
 	public long getId() {
 		return id;
 	}

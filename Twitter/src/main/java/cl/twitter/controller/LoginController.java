@@ -28,11 +28,6 @@ public class LoginController {
 		return modelAndView;
 	}
 	
-//	@PostMapping("/logout")
-//	public String logoutPage(Model model) {
-//		return "/login";
-//	}
-
 	@RequestMapping(value = "/registration", method = RequestMethod.GET)
 	public ModelAndView registration() {
 		ModelAndView modelAndView = new ModelAndView();

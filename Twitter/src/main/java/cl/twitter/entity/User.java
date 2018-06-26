@@ -25,7 +25,8 @@ import org.springframework.data.annotation.Transient;
 @Table(name = "user")
 public class User {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "user_id")
 	private long id;
 
 	@Column(name = "email")
@@ -54,10 +55,6 @@ public class User {
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<Comment> comment = new ArrayList<>();
-
-	public User() {
-
-	}
 
 	public long getId() {
 		return id;
