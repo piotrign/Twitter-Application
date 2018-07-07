@@ -12,6 +12,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
@@ -33,6 +34,9 @@ public class Tweet {
 
 	@CreationTimestamp
 	private Date created;
+	
+	@UpdateTimestamp
+	private Date updated;
 
 	@ManyToOne
 	private User user;

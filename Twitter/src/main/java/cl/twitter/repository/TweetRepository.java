@@ -15,6 +15,8 @@ public interface TweetRepository extends JpaRepository<Tweet, Long> {
 	List<Tweet> findByUser(User user);
 
 	List<Tweet> findByUserId(long id);
+	
+	Tweet findById(long id);
 
 	@Query("SELECT t FROM Tweet t ORDER BY t.created DESC")
 	List<Tweet> findAllOrderByCreatedDesc();
