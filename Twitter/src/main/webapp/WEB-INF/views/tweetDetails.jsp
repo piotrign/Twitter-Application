@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Tweet title ${tweetDetails.title}</title>
+<title>Tweet title ${tweet.title}</title>
 </head>
 <body>
 
@@ -17,23 +17,23 @@
 	<table border="2">
 		<thead>
 			<tr>
+				<td>ID</td>
 				<td>Title</td>
 				<td>Tweet Text</td>
 				<td>Created</td>
+				<td>Updated</td>
 				<td>Action</td>
 			</tr>
 		</thead>
-		<c:forEach items="${tweetDetails}" var="tweet">
 			<tr>
-				<td><c:out value="${tweet.user}" /></td>
-				<td><c:out value="${tweet.title}" /></td>
-				<td><c:out value="${tweet.textBox}" /></td>
-				<td><c:out value="${tweet.created}" /></td>
-				<td><c:out value="${tweet.updated}" /></td>
+				<td>${tweet.id}</td>
+				<td>${tweet.title}</td>
+				<td>${tweet.textBox}</td>
+				<td>${tweet.created}"</td>
+				<td>${tweet.updated}"</td>
 				<td><a href="${contextPath}/tweet/edit/${tweet.id}">Edit</a></td>
 				<td><a href="${contextPath}/tweet/edit/${tweet.id}">Comment</a></td>
 			</tr>
-		</c:forEach>
 	</table>
 	
 	

@@ -32,6 +32,7 @@
 				<td><c:out value="${tweet.textBox}" /></td>
 				<td><c:out value="${tweet.created}" /></td>
 				<td><a href="${contextPath}/tweet/details/${tweet.id}">Details</a></td>
+				<td><a href="${contextPath}/comment/add/${tweet.id}">Add comment</a></td>
 			</tr>
 		</c:forEach>
 	</table>

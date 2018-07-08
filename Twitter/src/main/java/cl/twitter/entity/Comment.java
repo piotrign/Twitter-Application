@@ -9,28 +9,30 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 @Table(name = "comment")
 public class Comment {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "comment_id")
 	private long id;
-	
+
 	@ManyToOne
 	private User user;
-	
+
 	@ManyToOne
 	private Tweet tweet;
-	
+
 	@CreationTimestamp
 	private Date created;
 	
-	private String text;
+	@Size(max = 255, min = 1)
+	private String commentText;
 
 	public long getId() {
 		return id;
@@ -64,12 +66,12 @@ public class Comment {
 		this.created = created;
 	}
 
-	public String getText() {
-		return text;
+	public String getCommentText() {
+		return commentText;
 	}
 
-	public void setText(String text) {
-		this.text = text;
+	public void setCommentText(String commentText) {
+		this.commentText = commentText;
 	}
-	
+
 }

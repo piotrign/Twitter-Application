@@ -40,31 +40,33 @@ public class TweetController {
 		System.out.println(tweet.getId() + " " + tweet.getTitle() + " " + tweet.getTextBox());
 		return "/forms/addTweet";
 	}
-	
-	@GetMapping("tweetDetails/{id}")
+	/** 
+	 * This method displays details of selected tweet by provided id.
+	 * */
+	@GetMapping("details/{id}")
 	public String findTweetDetails(@PathVariable int id, Model model) {
-		model.addAttribute("tweetDetails", tweetRepository.findById(id));
-		return "tweetDetail";
+		model.addAttribute("tweet", tweetRepository.findById(id));
+		return "tweetDetails";
 	}
-	
-	@GetMapping("tweetDetails/edit/{id}")
+	/** 
+	 * This method displays form to edit selected tweet by provided id.
+	 * */
+	@GetMapping("edit/{id}")
 	public String editTweet(@PathVariable int id, Model model) {
 		model.addAttribute("tweetDetails", tweetRepository.findById(id));
-		return "tweetDetails";
+		return "forms/editTweet";
 	}
 	
 	/** 
-	 * This method displays form to process a tweet.
+	 * This method process form to edit selected tweet by provided id.
 	 * */
-	@PostMapping("tweetDetails/edit")
+	@PostMapping("edit/{id}")
 	public String saveEditedTweet(@Valid Tweet tweet, BindingResult result) {
-//		TODO: consider error handling
-//		if (result.hasErrors()) {
-//			System.out.println("form edit error");
-//			System.out.println(result.getFieldErrors(field));
-//			return "/admin/editTournament";
-//		}
-		System.out.println(tweet.getId() + " " + " " + tweet.getTitle());
+		if (result.hasErrors()) {
+			System.out.println("form edit error");
+			return "tweetDetails";
+		}
+		System.out.println("ID" + " " + tweet.getId() + " " + "Title" + " " + tweet.getTitle());
 		tweetRepository.save(tweet);
 		return "tweetDetails";
 	}
