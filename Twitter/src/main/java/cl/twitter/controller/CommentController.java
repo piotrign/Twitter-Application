@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import cl.twitter.entity.Comment;
 import cl.twitter.repository.CommentRepository;
 import cl.twitter.repository.TweetRepository;
+import cl.twitter.repository.UserRepository;
 
 @Controller
 @RequestMapping("/comment")
@@ -27,6 +28,9 @@ public class CommentController {
 	@Autowired
 	TweetRepository tweetRepository;
 	
+	@Autowired
+	UserRepository userRepository;
+	
 	@GetMapping("/add/{id}")
 	public String getComment(@PathVariable long id, Model model) {
 		model.addAttribute("comment", new Comment());
@@ -35,14 +39,14 @@ public class CommentController {
 	}
 
 	@PostMapping("/add/{id}")
-	public String processCommentForm(@AuthenticationPrincipal UserDetails currentUser, @Valid Comment comment, BindingResult result) {
+	public String processCommentForm(@PathVariable long id, @AuthenticationPrincipal UserDetails currentUser, @Valid Comment comment, BindingResult result) {
 		if (result.hasErrors()) {
 			return "forms/addComment";
 		}
-		Comment commentPosted = new Comment();
-		commentPosted.setUser(user.getId);
+		comment.setUser(userRepository.findByEmail(currentUser.getUsername()));
+		comment.setTweet(tweetRepository.findById(id));
 		commentRepository.save(comment);
-		System.out.println(comment.getId() + " " + comment.getCreated() + " " + comment.getCommentText());
-		return "/forms/addComment";
+		return "forms/addComment";
 	}
+	
 }
