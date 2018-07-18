@@ -23,7 +23,6 @@ public class HomePageController {
 	@Autowired
 	private UserService userService;
 
-	
 	@GetMapping("/home")
 	public ModelAndView home(){
 		ModelAndView modelAndView = new ModelAndView();
